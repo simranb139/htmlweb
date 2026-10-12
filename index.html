@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simran's Grand Line Adventure 🏴‍☠️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Trebuchet MS', sans-serif;
+            background: linear-gradient(135deg, #101820, #172b3a, #401c24);
+            color: #fff;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 20px;
+            border: 1px solid #ffcb69;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 25px rgba(255, 203, 105, 0.12);
+        }
+
+        .emoji {
+            font-size: 55px;
+        }
+
+        h1 {
+            color: #ffcb69;
+            font-size: 2.4rem;
+            margin: 15px 0;
+        }
+
+        header p {
+            color: #ddd;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #ffcb69;
+            font-weight: bold;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 203, 105, 0.3);
+            border-radius: 18px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        h2 {
+            color: #ffcb69;
+            margin-bottom: 18px;
+        }
+
+        .status {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .pill {
+            background: #263d4c;
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 18px;
+            background: #29343b;
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff8c42, #ffcb69);
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        .counter {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        input {
+            width: 110px;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ffcb69;
+            background: #17232d;
+            color: white;
+            font-size: 1rem;
+        }
+
+        button {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: #ffcb69;
+            color: #17232d;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #ff9f43;
+            transform: translateY(-2px);
+        }
+
+        .quote {
+            font-style: italic;
+            color: #f6d9a8;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .mission {
+            list-style: none;
+        }
+
+        .mission li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            line-height: 1.6;
+        }
+
+        .mission li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #bbb;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .counter {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+
+        <header>
+            <div class="emoji">🏴‍☠️</div>
+            <h1>Simran Banu's Grand Line</h1>
+            <p>
+                Currently debugging at <span class="highlight">GitLab</span> 💻<br>
+                Mentally sailing with the Straw Hat Pirates ☠️<br>
+                <span class="highlight">Mission:</span> Finish One Piece ASAP!
+            </p>
+        </header>
+
+        <section class="card">
+            <h2>⚓ My Anime Journey</h2>
+
+            <div class="status">
+                <span class="pill">🍖 Captain: Luffy</span>
+                <span class="pill">💻 Day Job: GitLab</span>
+                <span class="pill">❤️ Current Obsession: One Piece</span>
+            </div>
+
+            <p>Episodes watched: <strong id="watchedText">0</strong></p>
+            <p>Total episodes: <strong id="totalText">1200</strong></p>
+
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+
+            <p id="progressText">0% complete. The adventure begins!</p>
+
+            <div class="counter">
+                <label for="watched">Update progress:</label>
+                <input
+                    type="number"
+                    id="watched"
+                    min="0"
+                    max="1200"
+                    value="0"
+                >
+                <button onclick="updateProgress()">Set Progress</button>
+                <button onclick="addEpisode()">+1 Episode 🍿</button>
+            </div>
+
+            <p id="message" class="highlight">
+                Every episode brings you closer to the One Piece!
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>🎯 Daily Missions</h2>
+            <ul class="mission">
+                <li>☑️ Complete GitLab tasks without crying.</li>
+                <li>☑️ Resist the urge to watch "just one more episode."</li>
+                <li>☑️ Actually watch one more episode.</li>
+                <li>☑️ Avoid spoilers like they are World Government secrets.</li>
+                <li>☑️ Remember: sleep is important too! 😭</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>🏴‍☠️ Words to Live By</h2>
+            <p class="quote">
+                "If you don't take risks, you can't create a future!"
+                <br><br>
+                — Monkey D. Luffy's energy, basically.
+            </p>
+        </section>
+
+        <footer>
+            Made with ❤️ for Simran Banu<br>
+            Powered by coffee ☕, code 💻, and the will of D.<br>
+            <strong>Git commits by day. Pirate dreams by night.</strong>
+        </footer>
+
+    </main>
+
+    <script>
+        // Change this number to the latest episode count you want to track.
+        const TOTAL_EPISODES = 1200;
+
+        function updateProgress() {
+            const input = document.getElementById("watched");
+            let watched = Number(input.value);
+
+            if (!Number.isFinite(watched)) watched = 0;
+
+            watched = Math.max(
+                0,
+                Math.min(TOTAL_EPISODES, Math.floor(watched))
+            );
+
+            input.value = watched;
+
+            const percentage = (watched / TOTAL_EPISODES) * 100;
+
+            document.getElementById("watchedText").textContent = watched;
+            document.getElementById("totalText").textContent = TOTAL_EPISODES;
+            document.getElementById("progressBar").style.width =
+                percentage + "%";
+
+            document.getElementById("progressText").textContent =
+                percentage.toFixed(1) + "% complete!";
+
+            const remaining = TOTAL_EPISODES - watched;
+
+            let message;
+
+            if (remaining === 0) {
+                message = "YOU DID IT, PIRATE KING SIMRAN! 👑";
+            } else if (percentage >= 75) {
+                message = "The One Piece is almost yours! 🏴‍☠️";
+            } else if (percentage >= 40) {
+                message = "You're deep into the Grand Line! 🌊";
+            } else if (percentage >= 10) {
+                message = "Your adventure is gaining momentum! 🍖";
+            } else {
+                message = "Every episode brings you closer to the treasure!";
+            }
+
+            document.getElementById("message").textContent = message;
+        }
+
+        function addEpisode() {
+            const input = document.getElementById("watched");
+            const current = Number(input.value) || 0;
+
+            input.value = Math.min(TOTAL_EPISODES, current + 1);
+            updateProgress();
+        }
+
+        document.getElementById("watched").addEventListener(
+            "keydown",
+            function(event) {
+                if (event.key === "Enter") {
+                    updateProgress();
+                }
+            }
+        );
+
+        updateProgress();
+    </script>
+</body>
+</html>
